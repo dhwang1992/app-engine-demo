@@ -1,0 +1,30 @@
+runtime: java
+runtime_config:
+  jdk: openjdk8
+
+env: flex
+
+service: app-frontend-test
+
+env_variables:
+  SPRING_PROFILES_ACTIVE: "qa"
+
+network:
+  forwarded_ports:
+    - 2222/tcp
+
+manual_scaling:
+  instances: 1
+
+readiness_check:
+  path: "/health"
+  check_interval_sec: 5
+  timeout_sec: 4
+  failure_threshold: 2
+  success_threshold: 2
+  app_start_timeout_sec: 1000
+
+resources:
+  cpu: 2
+  memory_gb: 2.3
+  disk_size_gb: 10

@@ -1,0 +1,34 @@
+buildscript {
+    ext {
+        springbootVersion = '2.1.3.RELEASE'
+    }
+    repositories {
+        maven {url 'https://repo.maven.apache.org/maven2/'}
+    }
+    dependencies {
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:${springbootVersion}')
+        classpath ('com.google.cloud.tools:appengine-gradle-plugin:1.+')
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '2.1.3.RELEASE'
+    id 'java'
+}
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.google.cloud.tools.appengine'
+
+group 'com.thoughtworks'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile ('com.google.appengine:appengine-api-1.0-sdk:+')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
